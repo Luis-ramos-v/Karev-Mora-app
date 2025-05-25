@@ -1,40 +1,37 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
+import { Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './styles/theme';
+import { GlobalStyle } from './styles/GlobalStyle';
+import { useTheme } from './hooks/useTheme';
+import { useAnalytics } from './hooks/useAnalytics';
+import { useActivityTracking } from './hooks/useActivityTracking';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { LoadingSpinner } from './components/common/LoadingSpinner';
+import { BrowserWarning } from './components/common/BrowserWarning';
+import { AppRoutes } from './routes';
 
-const client = generateClient<Schema>();
+// Initialize analytics
+initializeGA();
 
-function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
+const App = () => {
+  const { theme, toggleTheme } = useTheme();
+  const analytics = useAnalytics();
+  useActivityTracking(); // Add activity tracking
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-    </main>
+    <ErrorBoundary>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <BrowserWarning />
+          <Suspense fallback={<LoadingSpinner size={48} />}>
+            <AppRoutes />
+          </Suspense>
+        </BrowserRouter>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
-}
+};
 
 export default App;
