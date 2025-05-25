@@ -1,6 +1,7 @@
 import { writeFileSync } from 'fs';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import sharp from 'sharp';
+import { glob } from 'glob';
 import type { AssetManifest, ImageAsset, IconAsset } from '../types/assets';
 
 interface AssetMetadata {
@@ -38,36 +39,40 @@ export async function generateAssetManifest(): Promise<void> {
   };
 
   // Process images
-  const imageImports = import.meta.glob<{ default: string }>('/src/assets/images/*.{jpg,png,webp,svg}', {
-    eager: true,
+  const imageFiles = await glob('src/assets/images/*.{jpg,png,webp,svg}', {
+    cwd: process.cwd(),
+    absolute: true,
   });
-
-  for (const [path, module] of Object.entries(imageImports)) {
-    const fileName = path.split('/').pop()?.split('.')[0] || '';
-    const metadata = await getImageMetadata(module.default);
+  
+  for (const filePath of imageFiles) {
+    const fileName = filePath.split('/').pop()?.split('.')[0] || '';
+    const metadata = await getImageMetadata(filePath);
+    const relativePath = filePath.replace(process.cwd(), '').replace(/\\/g, '/');
     
     manifest.images[fileName] = {
-      src: module.default,
+      src: relativePath,
       alt: fileName.replace(/-/g, ' '),
       width: metadata.width,
       height: metadata.height,
       format: metadata.format as ImageAsset['format'],
       size: metadata.size,
-      optimized: true // Since we're using sharp for optimization
+      optimized: true
     };
   }
 
   // Process icons
-  const iconImports = import.meta.glob<{ default: string }>('/src/assets/icons/*.{svg,png}', {
-    eager: true,
+  const iconFiles = await glob('src/assets/icons/*.{svg,png}', {
+    cwd: process.cwd(),
+    absolute: true,
   });
-
-  for (const [path, module] of Object.entries(iconImports)) {
-    const fileName = path.split('/').pop()?.split('.')[0] || '';
-    const metadata = await getImageMetadata(module.default);
+  
+  for (const filePath of iconFiles) {
+    const fileName = filePath.split('/').pop()?.split('.')[0] || '';
+    const metadata = await getImageMetadata(filePath);
+    const relativePath = filePath.replace(process.cwd(), '').replace(/\\/g, '/');
     
     manifest.icons[fileName] = {
-      src: module.default,
+      src: relativePath,
       name: fileName,
       format: metadata.format as IconAsset['format'],
       size: metadata.size
