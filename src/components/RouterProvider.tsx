@@ -6,4 +6,4 @@ export const RouterProvider = () => {
   const router = useMemo(() => createBrowserRouter(routes), []);
 
   return <BaseRouterProvider router={router} />;
-}; 
+};

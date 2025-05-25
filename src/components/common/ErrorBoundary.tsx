@@ -79,7 +79,7 @@ export class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // Log the error to an error reporting service
     console.error('Error caught by ErrorBoundary:', error, errorInfo);
-    
+
     // Call the onError callback if provided
     this.props.onError?.(error, errorInfo);
   }
@@ -106,11 +106,7 @@ export class ErrorBoundary extends Component<Props, State> {
           {process.env.NODE_ENV === 'development' && this.state.error?.stack && (
             <ErrorStack>{this.state.error.stack}</ErrorStack>
           )}
-          <Button
-            variant="secondary"
-            onClick={this.handleReset}
-            leftIcon="🔄"
-          >
+          <Button variant="secondary" onClick={this.handleReset} leftIcon="🔄">
             Try again
           </Button>
         </ErrorContainer>
@@ -119,4 +115,4 @@ export class ErrorBoundary extends Component<Props, State> {
 
     return this.props.children;
   }
-} 
+}

@@ -94,4 +94,4 @@ export const BrowserWarning = memo(() => {
   );
 });
 
-BrowserWarning.displayName = 'BrowserWarning'; 
+BrowserWarning.displayName = 'BrowserWarning';

@@ -6,27 +6,27 @@ const directories = [
   'components/common',
   'components/layout',
   'components/pages',
-  
+
   // Hooks
   'hooks',
-  
+
   // Services
   'services',
-  
+
   // Utils
   'utils',
-  
+
   // Types
   'types',
-  
+
   // Styles
   'styles',
-  
+
   // Assets
   'assets/images',
   'assets/fonts',
   'assets/icons',
-  
+
   // Tests
   '__tests__/components',
   '__tests__/hooks',
@@ -48,4 +48,4 @@ async function createDirectories() {
   }
 }
 
-createDirectories().catch(console.error); 
+createDirectories().catch(console.error);

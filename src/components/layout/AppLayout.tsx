@@ -37,4 +37,4 @@ export function AppLayout({ children }: AppLayoutProps) {
       <Footer />
     </>
   );
-} 
+}

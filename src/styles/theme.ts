@@ -51,4 +51,4 @@ export const theme: DefaultTheme = {
     linkGap: '16px',
     headerMargin: '24px',
   },
-}; 
+};

@@ -31,7 +31,7 @@ export const useActivityTracking = () => {
     const docHeight = document.documentElement.scrollHeight;
     const winHeight = window.innerHeight;
     const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
-    
+
     // Find the highest threshold reached
     const currentDepth = SCROLL_DEPTH_THRESHOLDS.reduce((highest, threshold) => {
       return scrollPercent >= threshold ? threshold : highest;
@@ -69,7 +69,7 @@ export const useActivityTracking = () => {
   const trackMetrics = useCallback(() => {
     const now = Date.now();
     const timeSpent = Math.floor((now - metricsRef.current.lastInteraction) / 1000);
-    
+
     analytics.trackCustomEvent('page_metrics', {
       time_spent_seconds: timeSpent,
       scroll_depth: metricsRef.current.scrollDepth,
@@ -130,4 +130,4 @@ export const useActivityTracking = () => {
   return {
     getMetrics: () => ({ ...metricsRef.current }),
   };
-}; 
+};

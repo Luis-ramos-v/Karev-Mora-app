@@ -29,4 +29,4 @@ export type AssetManifest = {
 };
 
 export type AssetCategory = keyof AssetManifest;
-export type AssetType = ImageAsset | IconAsset | FontAsset; 
+export type AssetType = ImageAsset | IconAsset | FontAsset;

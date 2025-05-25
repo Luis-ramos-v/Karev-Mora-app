@@ -87,4 +87,4 @@ export interface EnvConfig {
   VITE_APP_BASE_URL: string;
   VITE_GOOGLE_ANALYTICS_ID: string;
   VITE_APP_VERSION: string;
-} 
+}

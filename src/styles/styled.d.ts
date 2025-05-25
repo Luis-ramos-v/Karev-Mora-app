@@ -43,4 +43,4 @@ declare module 'styled-components' {
       modal: number;
     };
   }
-} 
+}

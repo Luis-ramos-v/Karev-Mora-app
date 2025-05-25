@@ -9,14 +9,14 @@ interface OpenLinkOptions {
 
 const openInDefaultBrowser = (url: string): boolean => {
   const browserInfo = detectBrowser();
-  
+
   // For iOS devices
   if (browserInfo.isIOSBrowser) {
     // Try to open in Safari first
     window.location.href = url;
     return true;
   }
-  
+
   // For Android devices
   if (browserInfo.isAndroidBrowser && browserInfo.browserPackage) {
     // Try to open in the default browser using intent
@@ -24,13 +24,13 @@ const openInDefaultBrowser = (url: string): boolean => {
     window.location.href = intentUrl;
     return true;
   }
-  
+
   // For desktop browsers
   if (!browserInfo.isMobile) {
     window.open(url, '_blank', 'noopener,noreferrer');
     return true;
   }
-  
+
   // Fallback for other mobile browsers
   const link = document.createElement('a');
   link.href = url;
@@ -44,7 +44,7 @@ const openInDefaultBrowser = (url: string): boolean => {
 
 export const openExternalLink = ({ url, eventName, eventParams }: OpenLinkOptions) => {
   const browserInfo = detectBrowser();
-  
+
   // Track the link click
   if (eventName) {
     trackEvent(eventName, {
@@ -65,4 +65,4 @@ export const openExternalLink = ({ url, eventName, eventParams }: OpenLinkOption
 
   // Try to open in default browser
   return openInDefaultBrowser(url);
-}; 
+};

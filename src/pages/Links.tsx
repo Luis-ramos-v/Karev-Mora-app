@@ -25,43 +25,43 @@ const fadeIn = keyframes`
 
 const links: Link[] = [
   {
-    id: "link1",
-    url: "https://onlyfans.com/karev.mora",
-    icon: "circle-user",
-    text: "Onlyfans"
+    id: 'link1',
+    url: 'https://onlyfans.com/karev.mora',
+    icon: 'circle-user',
+    text: 'Onlyfans',
   },
   {
-    id: "link2",
-    url: "https://onlyfans.com/mora_xxx",
-    icon: "crown",
-    text: "Onlyfans VIP"
+    id: 'link2',
+    url: 'https://onlyfans.com/mora_xxx',
+    icon: 'crown',
+    text: 'Onlyfans VIP',
   },
   {
-    id: "link3",
-    url: "https://www.instagram.com/karevmora",
-    icon: "instagram",
-    text: "Instagram"
+    id: 'link3',
+    url: 'https://www.instagram.com/karevmora',
+    icon: 'instagram',
+    text: 'Instagram',
   },
   {
-    id: "link4",
-    url: "https://x.com/karev_mora",
-    icon: "twitter",
-    text: "X"
+    id: 'link4',
+    url: 'https://x.com/karev_mora',
+    icon: 'twitter',
+    text: 'X',
   },
   {
-    id: "link5",
-    url: "https://www.amazon.com.mx/hz/wishlist/ls/Q3CH9U2XF5LT",
-    icon: "gift",
-    text: "Amazon Wishlist",
-    subtext: "Make me happy"
+    id: 'link5',
+    url: 'https://www.amazon.com.mx/hz/wishlist/ls/Q3CH9U2XF5LT',
+    icon: 'gift',
+    text: 'Amazon Wishlist',
+    subtext: 'Make me happy',
   },
   {
-    id: "link6",
-    url: "https://www.paypal.com/donate?hosted_button_id=C2J3HEW2T9GPU",
-    icon: "paypal",
-    text: "Paypal",
-    subtext: "Spoil Me"
-  }
+    id: 'link6',
+    url: 'https://www.paypal.com/donate?hosted_button_id=C2J3HEW2T9GPU',
+    icon: 'paypal',
+    text: 'Paypal',
+    subtext: 'Spoil Me',
+  },
 ];
 
 const BackgroundOverlay = styled.div`
@@ -198,4 +198,4 @@ export const Links = memo(() => {
   );
 });
 
-Links.displayName = 'Links'; 
+Links.displayName = 'Links';

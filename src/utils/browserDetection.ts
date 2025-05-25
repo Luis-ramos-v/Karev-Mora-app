@@ -10,18 +10,24 @@ interface BrowserInfo {
 }
 
 const IN_APP_BROWSERS = [
-  "Instagram", "FBAN", "FBAV", "Messenger", "Line", "Snapchat", "TikTok", "Reddit", "X"
+  'Instagram',
+  'FBAN',
+  'FBAV',
+  'Messenger',
+  'Line',
+  'Snapchat',
+  'TikTok',
+  'Reddit',
+  'X',
 ];
 
-const IOS_BROWSERS = [
-  "Safari", "CriOS", "FxiOS", "EdgiOS"
-];
+const IOS_BROWSERS = ['Safari', 'CriOS', 'FxiOS', 'EdgiOS'];
 
 const ANDROID_BROWSERS = [
-  { name: "Chrome", package: "com.android.chrome" },
-  { name: "Firefox", package: "org.mozilla.firefox" },
-  { name: "Edge", package: "com.microsoft.emmx" },
-  { name: "Brave", package: "com.brave.browser" }
+  { name: 'Chrome', package: 'com.android.chrome' },
+  { name: 'Firefox', package: 'org.mozilla.firefox' },
+  { name: 'Edge', package: 'com.microsoft.emmx' },
+  { name: 'Brave', package: 'com.brave.browser' },
 ];
 
 export const detectBrowser = (): BrowserInfo => {
@@ -88,7 +94,7 @@ export const detectBrowser = (): BrowserInfo => {
     isInAppBrowser,
     isIOSBrowser,
     isAndroidBrowser,
-    browserPackage
+    browserPackage,
   };
 };
 
@@ -109,4 +115,4 @@ export const getBrowserWarning = (browserInfo: BrowserInfo): string | null => {
   }
 
   return null;
-}; 
+};

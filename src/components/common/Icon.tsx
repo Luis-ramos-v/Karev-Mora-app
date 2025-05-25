@@ -70,13 +70,7 @@ const StyledIcon = styled.i<{ $size?: number; $color?: string }>`
   }
 `;
 
-export const Icon = memo(({ 
-  name, 
-  size, 
-  color, 
-  className, 
-  onClick 
-}: IconProps) => {
+export const Icon = memo(({ name, size, color, className, onClick }: IconProps) => {
   return (
     <StyledIcon
       className={`${getIconClass(name)} ${className || ''}`}
@@ -88,4 +82,4 @@ export const Icon = memo(({
   );
 });
 
-Icon.displayName = 'Icon'; 
+Icon.displayName = 'Icon';

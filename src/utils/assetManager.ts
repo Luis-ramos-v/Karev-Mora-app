@@ -1,11 +1,19 @@
 import type { AssetType } from '../types/assets';
-import { assetManifest, type ImageName, type IconName, type FontName } from '../generated/asset-manifest';
+import {
+  assetManifest,
+  type ImageName,
+  type IconName,
+  type FontName,
+} from '../generated/asset-manifest';
 import { useMemo } from 'react';
 
 // Import all images
-const imageImports = import.meta.glob<{ default: string }>('/src/assets/images/*.{jpg,png,webp,svg}', {
-  eager: true,
-});
+const imageImports = import.meta.glob<{ default: string }>(
+  '/src/assets/images/*.{jpg,png,webp,svg}',
+  {
+    eager: true,
+  }
+);
 
 // Import all icons
 const iconImports = import.meta.glob<{ default: string }>('/src/assets/icons/*.{svg,png}', {
@@ -17,7 +25,7 @@ const assetManifest: AssetManifest = {
   images: {},
   icons: {},
   fonts: {
-    'Inter': {
+    Inter: {
       family: 'Inter',
       weights: [400, 500, 600, 700],
       formats: ['woff2', 'woff'],
@@ -31,11 +39,11 @@ const assetManifest: AssetManifest = {
 Object.entries(imageImports).forEach(([path, module]) => {
   const fileName = path.split('/').pop()?.split('.')[0] || '';
   const format = path.split('.').pop() as ImageAsset['format'];
-  
+
   // Create a temporary image to get dimensions
   const img = new Image();
   img.src = module.default;
-  
+
   assetManifest.images[fileName] = {
     src: module.default,
     alt: fileName.replace(/-/g, ' '),
@@ -49,7 +57,7 @@ Object.entries(imageImports).forEach(([path, module]) => {
 Object.entries(iconImports).forEach(([path, module]) => {
   const fileName = path.split('/').pop()?.split('.')[0] || '';
   const format = path.split('.').pop() as IconAsset['format'];
-  
+
   assetManifest.icons[fileName] = {
     src: module.default,
     name: fileName,
@@ -120,4 +128,4 @@ export const getAllIcons = () => {
 
 export const getAllImages = () => {
   return Object.values(assetManifest.images);
-}; 
+};

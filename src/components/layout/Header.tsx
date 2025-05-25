@@ -44,8 +44,7 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled(Link)<{ $isActive: boolean }>`
-  color: ${({ theme, $isActive }) =>
-    $isActive ? theme.colors.accent : theme.colors.text};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.colors.accent : theme.colors.text)};
   text-decoration: none;
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   border-radius: ${({ theme }) => theme.borderRadius.md};
@@ -133,4 +132,4 @@ export function Header() {
       </MobileMenu>
     </HeaderContainer>
   );
-} 
+}

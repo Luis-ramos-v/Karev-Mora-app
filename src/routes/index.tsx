@@ -13,12 +13,14 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 
 // Loading component for suspense fallback
 const PageLoader = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    minHeight: '100vh' 
-  }}>
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+    }}
+  >
     <LoadingSpinner size={48} />
   </div>
 );
@@ -26,9 +28,7 @@ const PageLoader = () => (
 // Route wrapper component for consistent error handling and loading states
 const RouteWrapper = ({ children }: { children: React.ReactNode }) => (
   <ErrorBoundary>
-    <Suspense fallback={<PageLoader />}>
-      {children}
-    </Suspense>
+    <Suspense fallback={<PageLoader />}>{children}</Suspense>
   </ErrorBoundary>
 );
 
@@ -81,4 +81,4 @@ export const routes: RouteObject[] = [
       </RouteWrapper>
     ),
   },
-]; 
+];

@@ -167,24 +167,16 @@ export const MobileMenu = memo(({ isOpen, onClose }: MobileMenuProps) => {
           </CloseButton>
         </MenuHeader>
         <MenuNav>
-          {menuItems.map((item) => (
-            <MenuLink
-              key={item.path}
-              variant="ghost"
-              as="a"
-              href={item.path}
-              onClick={onClose}
-            >
+          {menuItems.map(item => (
+            <MenuLink key={item.path} variant="ghost" as="a" href={item.path} onClick={onClose}>
               {item.label}
             </MenuLink>
           ))}
         </MenuNav>
-        <MenuFooter>
-          © {new Date().getFullYear()} Karev Mora
-        </MenuFooter>
+        <MenuFooter>© {new Date().getFullYear()} Karev Mora</MenuFooter>
       </MenuContainer>
     </>
   );
 });
 
-MobileMenu.displayName = 'MobileMenu'; 
+MobileMenu.displayName = 'MobileMenu';

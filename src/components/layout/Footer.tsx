@@ -49,7 +49,7 @@ export function Footer() {
     <FooterContainer>
       <FooterContent>
         <SocialLinks>
-          {config.socialLinks.map((link) => (
+          {config.socialLinks.map(link => (
             <SocialLink
               key={link.name}
               href={link.url}
@@ -67,4 +67,4 @@ export function Footer() {
       </FooterContent>
     </FooterContainer>
   );
-} 
+}

@@ -65,7 +65,7 @@ export function BackgroundManager() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particlesRef.current.forEach((particle) => {
+      particlesRef.current.forEach(particle => {
         particle.x += particle.speedX;
         particle.y += particle.speedY;
 
@@ -106,4 +106,4 @@ export function BackgroundManager() {
       <Canvas ref={canvasRef} />
     </BackgroundContainer>
   );
-} 
+}

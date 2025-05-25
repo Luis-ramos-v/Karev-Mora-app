@@ -25,7 +25,8 @@ const Layout = styled.div<{ $backgroundImage?: string }>`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: ${({ $backgroundImage }) => $backgroundImage ? `url(${$backgroundImage})` : 'none'};
+    background-image: ${({ $backgroundImage }) =>
+      $backgroundImage ? `url(${$backgroundImage})` : 'none'};
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -125,32 +126,31 @@ export const PageLayout = memo(({ children, className }: PageLayoutProps) => {
           Karev Mora
         </Logo>
         <Nav>
-          <Button variant="ghost" as="a" href="/">Home</Button>
-          <Button variant="ghost" as="a" href="/links">Links</Button>
-          <Button variant="ghost" as="a" href="/about">About</Button>
-          <Button variant="ghost" as="a" href="/projects">Projects</Button>
-          <Button variant="ghost" as="a" href="/contact">Contact</Button>
+          <Button variant="ghost" as="a" href="/">
+            Home
+          </Button>
+          <Button variant="ghost" as="a" href="/links">
+            Links
+          </Button>
+          <Button variant="ghost" as="a" href="/about">
+            About
+          </Button>
+          <Button variant="ghost" as="a" href="/projects">
+            Projects
+          </Button>
+          <Button variant="ghost" as="a" href="/contact">
+            Contact
+          </Button>
         </Nav>
-        <MobileMenuButton 
-          variant="ghost" 
-          leftIcon="menu"
-          onClick={handleOpenMobileMenu}
-        >
+        <MobileMenuButton variant="ghost" leftIcon="menu" onClick={handleOpenMobileMenu}>
           Menu
         </MobileMenuButton>
       </Header>
-      <Main>
-        {children}
-      </Main>
-      <Footer>
-        © {new Date().getFullYear()} Karev Mora. All rights reserved.
-      </Footer>
-      <MobileMenu 
-        isOpen={isMobileMenuOpen} 
-        onClose={handleCloseMobileMenu} 
-      />
+      <Main>{children}</Main>
+      <Footer>© {new Date().getFullYear()} Karev Mora. All rights reserved.</Footer>
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={handleCloseMobileMenu} />
     </Layout>
   );
 });
 
-PageLayout.displayName = 'PageLayout'; 
+PageLayout.displayName = 'PageLayout';

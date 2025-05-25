@@ -1,7 +1,7 @@
 import { detectBrowser } from '../utils/browserDetection';
 
 // Analytics event types
-export type AnalyticsEventType = 
+export type AnalyticsEventType =
   | 'page_view'
   | 'link_click'
   | 'theme_change'
@@ -16,19 +16,19 @@ export interface AnalyticsEventParams {
   timestamp?: number;
   session_id?: string;
   user_agent?: string;
-  
+
   // Page view parameters
   page_path?: string;
   page_title?: string;
   page_referrer?: string;
-  
+
   // Link click parameters
   link_url?: string;
   link_text?: string;
   link_type?: string;
   link_category?: string;
   link_success?: boolean;
-  
+
   // Browser parameters
   browser_name?: string;
   browser_version?: string;
@@ -38,12 +38,12 @@ export interface AnalyticsEventParams {
   device_type?: string;
   os_name?: string;
   os_version?: string;
-  
+
   // Error parameters
   error_type?: string;
   error_message?: string;
   error_stack?: string;
-  
+
   // Custom parameters
   [key: string]: any;
 }
@@ -80,7 +80,7 @@ const getBrowserInfo = () => {
   const browserInfo = detectBrowser();
   const userAgent = navigator.userAgent;
   const language = navigator.language;
-  
+
   return {
     browser_name: browserInfo.name,
     browser_version: browserInfo.version,
@@ -128,7 +128,7 @@ const sendEvent = (event: { type: AnalyticsEventType; params: AnalyticsEventPara
 
   try {
     window.gtag('event', event.type, event.params);
-    
+
     if (ANALYTICS_CONFIG.debug) {
       console.log('Analytics event sent:', event);
     }
@@ -190,4 +190,4 @@ export const analytics = {
   trackCustomEvent: (type: AnalyticsEventType, params: AnalyticsEventParams) => {
     queueEvent(type, params);
   },
-}; 
+};

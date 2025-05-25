@@ -71,4 +71,4 @@ export const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar-thumb:hover {
     background: ${({ theme }) => theme.colors.secondary}60;
   }
-`; 
+`;

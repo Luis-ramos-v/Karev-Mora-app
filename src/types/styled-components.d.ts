@@ -53,4 +53,4 @@ declare module 'styled-components' {
       headerMargin: string;
     };
   }
-} 
+}

@@ -29,7 +29,7 @@ export const initializeGA = () => {
 
   // Initialize gtag
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function() {
+  window.gtag = function () {
     window.dataLayer.push(arguments);
   };
   window.gtag('js', new Date());
@@ -59,4 +59,4 @@ export const useAnalytics = () => {
   }, [location]);
 
   return analytics;
-}; 
+};

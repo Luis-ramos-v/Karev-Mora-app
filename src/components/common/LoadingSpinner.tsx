@@ -31,22 +31,19 @@ const Spinner = styled.div<{
   animation: ${spin} 0.75s linear infinite;
 `;
 
-export const LoadingSpinner = memo(({
-  size = 24,
-  color = 'currentColor',
-  className,
-  thickness = 2,
-}: LoadingSpinnerProps) => {
-  return (
-    <Spinner
-      className={className}
-      $size={size}
-      $color={color}
-      $thickness={thickness}
-      role="status"
-      aria-label="Loading"
-    />
-  );
-});
+export const LoadingSpinner = memo(
+  ({ size = 24, color = 'currentColor', className, thickness = 2 }: LoadingSpinnerProps) => {
+    return (
+      <Spinner
+        className={className}
+        $size={size}
+        $color={color}
+        $thickness={thickness}
+        role="status"
+        aria-label="Loading"
+      />
+    );
+  }
+);
 
-LoadingSpinner.displayName = 'LoadingSpinner'; 
+LoadingSpinner.displayName = 'LoadingSpinner';

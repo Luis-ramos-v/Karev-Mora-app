@@ -15,12 +15,12 @@ async function getImageMetadata(path: string): Promise<AssetMetadata> {
   const image = sharp(path);
   const metadata = await image.metadata();
   const stats = await image.stats();
-  
+
   return {
     width: metadata.width,
     height: metadata.height,
     size: stats.size || 0,
-    format: metadata.format || 'unknown'
+    format: metadata.format || 'unknown',
   };
 }
 
@@ -29,13 +29,13 @@ export async function generateAssetManifest(): Promise<void> {
     images: {},
     icons: {},
     fonts: {
-      'Inter': {
+      Inter: {
         family: 'Inter',
         weights: [400, 500, 600, 700],
         formats: ['woff2', 'woff'],
         display: 'swap',
-      }
-    }
+      },
+    },
   };
 
   // Process images
@@ -43,12 +43,12 @@ export async function generateAssetManifest(): Promise<void> {
     cwd: process.cwd(),
     absolute: true,
   });
-  
+
   for (const filePath of imageFiles) {
     const fileName = filePath.split('/').pop()?.split('.')[0] || '';
     const metadata = await getImageMetadata(filePath);
     const relativePath = filePath.replace(process.cwd(), '').replace(/\\/g, '/');
-    
+
     manifest.images[fileName] = {
       src: relativePath,
       alt: fileName.replace(/-/g, ' '),
@@ -56,7 +56,7 @@ export async function generateAssetManifest(): Promise<void> {
       height: metadata.height,
       format: metadata.format as ImageAsset['format'],
       size: metadata.size,
-      optimized: true
+      optimized: true,
     };
   }
 
@@ -65,17 +65,17 @@ export async function generateAssetManifest(): Promise<void> {
     cwd: process.cwd(),
     absolute: true,
   });
-  
+
   for (const filePath of iconFiles) {
     const fileName = filePath.split('/').pop()?.split('.')[0] || '';
     const metadata = await getImageMetadata(filePath);
     const relativePath = filePath.replace(process.cwd(), '').replace(/\\/g, '/');
-    
+
     manifest.icons[fileName] = {
       src: relativePath,
       name: fileName,
       format: metadata.format as IconAsset['format'],
-      size: metadata.size
+      size: metadata.size,
     };
   }
 
@@ -94,4 +94,4 @@ export type FontName = keyof typeof assetManifest.fonts;
 
   writeFileSync(manifestPath, manifestContent);
   console.log('Asset manifest generated successfully!');
-} 
+}

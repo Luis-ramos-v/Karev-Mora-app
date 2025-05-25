@@ -18,44 +18,46 @@ const StyledImage = styled.img<{ $isLoading: boolean }>`
   transition: opacity 0.3s ease-in-out;
 `;
 
-export const OptimizedImage = memo(({
-  name,
-  alt,
-  className,
-  width,
-  height,
-  loading = 'lazy',
-  priority = false,
-}: OptimizedImageProps) => {
-  const image = useImage(name);
-  
-  if (!image) {
-    console.warn(`Image "${name}" not found in asset manifest`);
-    return null;
+export const OptimizedImage = memo(
+  ({
+    name,
+    alt,
+    className,
+    width,
+    height,
+    loading = 'lazy',
+    priority = false,
+  }: OptimizedImageProps) => {
+    const image = useImage(name);
+
+    if (!image) {
+      console.warn(`Image "${name}" not found in asset manifest`);
+      return null;
+    }
+
+    const finalAlt = alt || image.alt;
+    const finalWidth = width || image.width;
+    const finalHeight = height || image.height;
+
+    return (
+      <StyledImage
+        src={image.src}
+        alt={finalAlt}
+        width={finalWidth}
+        height={finalHeight}
+        className={className}
+        loading={priority ? 'eager' : loading}
+        decoding={priority ? 'sync' : 'async'}
+        $isLoading={!image.optimized}
+        onLoad={e => {
+          const img = e.target as HTMLImageElement;
+          if (img.complete) {
+            img.style.opacity = '1';
+          }
+        }}
+      />
+    );
   }
+);
 
-  const finalAlt = alt || image.alt;
-  const finalWidth = width || image.width;
-  const finalHeight = height || image.height;
-
-  return (
-    <StyledImage
-      src={image.src}
-      alt={finalAlt}
-      width={finalWidth}
-      height={finalHeight}
-      className={className}
-      loading={priority ? 'eager' : loading}
-      decoding={priority ? 'sync' : 'async'}
-      $isLoading={!image.optimized}
-      onLoad={(e) => {
-        const img = e.target as HTMLImageElement;
-        if (img.complete) {
-          img.style.opacity = '1';
-        }
-      }}
-    />
-  );
-});
-
-OptimizedImage.displayName = 'OptimizedImage'; 
+OptimizedImage.displayName = 'OptimizedImage';

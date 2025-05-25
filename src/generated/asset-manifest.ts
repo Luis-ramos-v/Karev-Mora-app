@@ -1,4 +1,4 @@
-export type IconName = 
+export type IconName =
   | 'github'
   | 'twitter'
   | 'linkedin'
@@ -19,7 +19,7 @@ export type IconName =
   | 'paypal'
   | 'circle-user';
 
-export type ImageName = 
+export type ImageName =
   | 'background-default'
   | 'background-links'
   | 'background-about'
@@ -38,20 +38,26 @@ export interface AssetMetadata {
 }
 
 export interface AssetManifest {
-  icons: Record<IconName, {
-    src: string;
-    name: IconName;
-    metadata: AssetMetadata;
-  }>;
-  images: Record<ImageName, {
-    src: string;
-    name: ImageName;
-    metadata: AssetMetadata;
-  }>;
+  icons: Record<
+    IconName,
+    {
+      src: string;
+      name: IconName;
+      metadata: AssetMetadata;
+    }
+  >;
+  images: Record<
+    ImageName,
+    {
+      src: string;
+      name: ImageName;
+      metadata: AssetMetadata;
+    }
+  >;
 }
 
 // This will be generated at build time
 export const assetManifest: AssetManifest = {
   icons: {} as AssetManifest['icons'],
   images: {} as AssetManifest['images'],
-}; 
+};

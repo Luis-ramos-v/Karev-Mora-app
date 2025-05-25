@@ -12,4 +12,4 @@ export const useAsset = <T extends AssetType>(
 // Convenience hooks for specific asset types
 export const useImage = (name: string) => useAsset<'images'>(name);
 export const useIcon = (name: string) => useAsset<'icons'>(name);
-export const useFont = (name: string) => useAsset<'fonts'>(name); 
+export const useFont = (name: string) => useAsset<'fonts'>(name);

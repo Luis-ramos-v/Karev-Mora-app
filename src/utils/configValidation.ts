@@ -63,8 +63,10 @@ export function validateConfig(config: AppConfig): void {
   // Validate fonts
   const requiredFonts = ['title', 'subtitle', 'text'];
   for (const font of requiredFonts) {
-    if (!config.fonts?.[font as keyof typeof config.fonts]?.googleFontsUrl || 
-        !config.fonts?.[font as keyof typeof config.fonts]?.fontFamily) {
+    if (
+      !config.fonts?.[font as keyof typeof config.fonts]?.googleFontsUrl ||
+      !config.fonts?.[font as keyof typeof config.fonts]?.fontFamily
+    ) {
       throw new ConfigValidationError(`Font '${font}' must have googleFontsUrl and fontFamily`);
     }
   }
@@ -81,7 +83,7 @@ export function validateEnvConfig(): void {
     'VITE_APP_DESCRIPTION',
     'VITE_APP_BASE_URL',
     'VITE_GOOGLE_ANALYTICS_ID',
-    'VITE_APP_VERSION'
+    'VITE_APP_VERSION',
   ];
 
   for (const envVar of requiredEnvVars) {
@@ -89,4 +91,4 @@ export function validateEnvConfig(): void {
       throw new ConfigValidationError(`Environment variable '${envVar}' is required`);
     }
   }
-} 
+}

@@ -129,4 +129,4 @@ export const GlobalStyles = createGlobalStyle`
     white-space: nowrap;
     border: 0;
   }
-`; 
+`;
